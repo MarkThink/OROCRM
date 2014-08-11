@@ -16,7 +16,7 @@ parameters:
     session_handler: session.handler.native_file
     locale: en
     secret: ThisTokenIsNotSoSecretChangeIt
-    installed: '2014-08-11T14:51:27+08:00'
+    installed: false
     debug_toolbar: true
     debug_redirects: false
     use_assetic_controller: true
