@@ -1,0 +1,11 @@
+Oro\Bundle\CalendarBundle\Entity\CalendarEvent:
+    properties:
+        title:
+            - NotBlank:     ~
+        start:
+            - DateTime:     ~
+            - NotBlank:     ~
+            - Oro\Bundle\CalendarBundle\Validator\Constraints\DateEarlierThan: end
+        end:
+            - DateTime:     ~
+            - NotBlank:     ~

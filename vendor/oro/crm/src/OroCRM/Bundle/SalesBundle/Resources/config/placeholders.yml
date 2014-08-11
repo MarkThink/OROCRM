@@ -1,0 +1,28 @@
+placeholders:
+    orocrm_account_action_dropdown:
+        items:
+            orocrm_account_action_dropdown_add_opportuniy:
+                order: 20
+            orocrm_account_action_dropdown_add_lead:
+                order: 30
+    quick_launchpad_left_column:
+        items:
+            leads_launchpad:
+                order: 20
+    quick_launchpad_right_column:
+        items:
+            opportunities_launchpad:
+                order: 20
+
+items:
+    orocrm_account_action_dropdown_add_opportuniy:
+        template: OroCRMSalesBundle:Account:action/addOpportunityButton.html.twig
+
+    orocrm_account_action_dropdown_add_lead:
+        template: OroCRMSalesBundle:Account:action/addLeadButton.html.twig
+
+    leads_launchpad:
+        template: OroCRMSalesBundle:Dashboard:leadsLaunchpad.html.twig
+
+    opportunities_launchpad:
+        template: OroCRMSalesBundle:Dashboard:opportunitiesLaunchpad.html.twig

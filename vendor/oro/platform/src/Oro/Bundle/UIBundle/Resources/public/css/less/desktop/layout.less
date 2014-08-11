@@ -1,0 +1,30 @@
+@import "mixins";
+html, body, #page, #top-page {
+  height: 100%;
+  overflow-y: visible; // prevents scroll bar appearance
+}
+html{
+  overflow-y: hidden;
+}
+.responsive-block{
+  min-width: 350px;
+  word-break: break-all;
+}
+.responsive-cell {
+  .forScreenWithSideBar(@smallScreen, float, left);
+  .forScreenWithSideBar(@smallScreen, width, 100%);
+}
+#left-panel,
+#right-panel {
+  overflow: visible;
+}
+#left-panel, #right-panel, #main {
+  float: left;
+}
+.oro-multiselect-holder {
+  .input-append, .input-prepend {
+    input[type="email"], input[type="text"] {
+      width: 235px;
+    }
+  }
+}

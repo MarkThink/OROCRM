@@ -1,0 +1,17 @@
+placeholders:
+    orocrm_account_action_dropdown:
+        items:
+            orocrm_account_action_dropdown_add_contact:
+                order: 10
+
+    quick_launchpad_right_column:
+        items:
+            contacts_launchpad:
+                order: 10
+
+items:
+    orocrm_account_action_dropdown_add_contact:
+        template: OroCRMContactBundle:Account:action/addContactButton.html.twig
+
+    contacts_launchpad:
+        template: OroCRMContactBundle:Dashboard:contactsLaunchpad.html.twig

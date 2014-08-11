@@ -1,0 +1,103 @@
+table.grid thead th > a,
+table.grid thead th > span {
+    text-transform: uppercase;
+}
+
+table.grid tfoot th {
+    background-color: #f5f5f5;
+    background: -webkit-linear-gradient(top, #ffffff, #f5f5f5);
+    background: -o-linear-gradient(top, #ffffff,#f5f5f5);
+    background: -ms-linear-gradient(top, #ffffff,#f5f5f5);
+    background: linear-gradient(to bottom, #ffffff,#f5f5f5 );
+    padding: 4px 10px;
+}
+
+table.grid tfoot th > a,
+table.grid tfoot th > span {
+    text-transform: uppercase;
+    color: #5e5e5e;
+    font-size: 13px;
+}
+
+table.grid thead th span.caret {
+    display: none;
+    border: none;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.grid thead .btn-group .btn .caret {
+    margin-top:11px;
+}
+table.grid thead tr th.ascending span.caret {
+    margin-top:4px;
+    display: inline-block;
+    border-top:4px solid transparent;
+    border-bottom: 4px solid #000000;
+}
+
+table.grid thead tr th.descending span.caret {
+    display: inline-block;
+    border-bottom:4px solid transparent;
+    border-top: 4px solid #000000;
+}
+
+table.grid tbody tr.row-click-action {
+    cursor: pointer;
+}
+
+.grid-toolbar .pagination ul li input {
+    display: inline;
+    float: left;
+    width: 40px;
+    text-align: center;
+    margin: 0;
+    border-left: none;
+    border-color: #dddddd;
+    border-radius: 0;
+
+}
+.grid-toolbar .pagination input[type=number] {
+    -moz-appearance:textfield;
+}
+.grid-toolbar .pagination input[type=number]::-webkit-inner-spin-button,
+.grid-toolbar .pagination input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.no-data {
+    text-align: center;
+    font-size: 14px;
+    padding: 20px;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border: 1px solid #ddd;
+    background:#f9f9f9;
+    margin:10px 0;
+}
+
+table.grid tr .string-cell,
+table.grid tr .uri-cell,
+table.grid tr .email-cell,
+table.grid tr .select-cell,
+table.grid tr .date-cell,
+table.grid tr .time-cell,
+table.grid tr .datetime-cell,
+table.grid tr .boolean-cell {
+    text-align: left;
+}
+
+.datetime-cell {
+    white-space: nowrap;
+}
+
+table.grid tr .number-cell,
+table.grid tr .integer-cell {
+    text-align: right;
+}
+
+table.grid tr td:first-child,
+table.grid tr th:first-child {
+    text-align: left !important;
+}

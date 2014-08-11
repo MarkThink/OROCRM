@@ -1,0 +1,51 @@
+"Your config changes will be applied to schema.": "Your config changes will be applied to schema."
+"It may take few minutes...": "It may take few minutes..."
+oro:
+    entity_extend:
+        form:
+            data_type_group:
+                fields:             Fields
+                relations:          Relations
+            data_type:
+                choose_value:       Choose a field type...
+
+                string:             String
+                integer:            Integer
+                smallint:           SmallInt
+                bigint:             BigInt
+                boolean:            Boolean
+                decimal:            Decimal
+                date:               Date
+                text:               Text
+                float:              Float
+                money:              Currency
+                percent:            Percent
+                oneToMany:          One to many
+                manyToOne:          Many to one
+                manyToMany:         Many to many
+                optionSet:          Option set
+
+                ref-one:            System relation
+                ref-many:           System relation
+
+                inverse_relation:   Reuse "%field_name%" of %entity_name%
+        action:
+            apply_changes: "Apply entityconfig changes"
+            config_entity_grid:
+                unique: "Unique entity unique keys"
+                create: "Create custom entity"
+                remove: "Remove custom entity"
+                unremove: "Unremove custom entity"
+            config_field_grid:
+                create: "Create custom field"
+                update: "Update custom field"
+                remove: "Remove custom field"
+                unremove: "UnRemove custom field"
+        controller:
+            config_entity:
+                message:
+                    saved: "Entity saved"
+            config_field:
+                message:
+                    saved: "Field saved"
+        unique_keys: Unique Keys

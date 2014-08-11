@@ -1,0 +1,211 @@
+datagrid:
+    orocrm-campaign-grid:
+        extended_entity_name: OroCRM\Bundle\CampaignBundle\Entity\Campaign
+        source:
+            type: orm
+            acl_resource: orocrm_campaign_view
+            query:
+                select:
+                    - c.id
+                    - c.name
+                    - c.code
+                    - c.startDate
+                    - c.endDate
+                    - c.budget
+                from:
+                    - { table: OroCRM\Bundle\CampaignBundle\Entity\Campaign, alias: c }
+        columns:
+            name:
+                label: orocrm.campaign.name.label
+            code:
+                label: orocrm.campaign.code.label
+            startDate:
+                label: orocrm.campaign.start_date.label
+                frontend_type: date
+            endDate:
+                label: orocrm.campaign.end_date.label
+                frontend_type: date
+            budget:
+                label: orocrm.campaign.budget.label
+                frontend_type:   currency
+        filters:
+            columns:
+                name:
+                    type:        string
+                    data_name:   c.name
+                code:
+                    type:        string
+                    data_name:   c.code
+                startDate:
+                    type:        date
+                    data_name:   c.startDate
+                endDate:
+                    type:        date
+                    data_name:   c.endDate
+                budget:
+                    type:        number
+                    data_name:   c.budget
+        sorters:
+            columns:
+                name:        { data_name: c.name }
+                code:        { data_name: c.code }
+                startDate:   { data_name: c.startDate }
+                endDate:     { data_name: c.endDate }
+                budget:      { data_name: c.budget }
+            default:
+                startDate:  DESC
+        properties:
+            id: ~
+            view_link:
+                type: url
+                route: orocrm_campaign_view
+                params: [ id ]
+            update_link:
+                type: url
+                route: orocrm_campaign_update
+                params:
+                    - id
+            delete_link:
+                type: url
+                route: oro_api_delete_campaign
+                params:
+                    - id
+        actions:
+            view:
+                type:         navigate
+                label:        orocrm.campaign.datagrid.actions.view.label
+                link:         view_link
+                icon:         eye-open
+                acl_recource: orocrm_campaign_view
+                rowAction:    true
+            update:
+                type:          navigate
+                acl_resource:  orocrm_campaign_update
+                label:         orocrm.campaign.datagrid.actions.update.label
+                icon:          edit
+                link:          update_link
+            delete:
+                type:          delete
+                acl_resource:  orocrm_campaign_delete
+                label:         orocrm.campaign.datagrid.actions.delete.label
+                icon:          trash
+                link:          delete_link
+
+    campaign-tracking-total-report-grid:
+        source:
+            type: orm
+            acl_resource: orocrm_campaign_view
+            query:
+                select:
+                    - e.name
+                    - COUNT(e.id) as visitsCount
+                from:
+                    - { table: %oro_tracking.tracking_event.class%, alias: e }
+                where:
+                    and:
+                        - e.code = :code
+                groupBy: e.name
+        columns:
+            name:
+                label: oro.tracking.trackingevent.name.label
+            visitsCount:
+                label: orocrm.campaign.trackingevent.report.visits_count.label
+                frontend_type: integer
+        sorters:
+            columns:
+                name:
+                    data_name: e.name
+                visitsCount:
+                    data_name: visitsCount
+            default:
+                name: ASC
+        filters:
+            columns:
+                name:
+                    type:      string
+                    data_name: e.name
+                visitsCount:
+                    type:      number
+                    data_name: visitsCount
+                    filter_by_having: true
+                    options:
+                        data_type: Oro\Bundle\FilterBundle\Form\Type\Filter\NumberFilterType::DATA_INTEGER
+        options:
+            export: true
+
+    campaign-tracking-detailed-report-hour-grid:
+        source:
+            type: orm
+            acl_resource: orocrm_campaign_view
+            query:
+                select:
+                    - e.name
+                    - COUNT(e.id) as visitsCount
+                    - CONCAT(DATE(e.loggedAt), ' ', TIME(CONCAT(HOUR(e.loggedAt), ':00:00'))) as logTime
+                from:
+                    - { table: %oro_tracking.tracking_event.class%, alias: e }
+                where:
+                    and:
+                        - e.code = :code
+                groupBy: e.name, logTime
+        columns:
+            name:
+                label: oro.tracking.trackingevent.name.label
+            visitsCount:
+                label: orocrm.campaign.trackingevent.report.visits_count.label
+                frontend_type: integer
+            logTime:
+                label: orocrm.campaign.trackingevent.report.date.label
+                frontend_type: datetime
+
+    campaign-tracking-detailed-report-day-grid:
+        source:
+            type: orm
+            acl_resource: orocrm_campaign_view
+            query:
+                select:
+                    - e.name
+                    - COUNT(e.id) as visitsCount
+                    - DATE(e.loggedAt) as logTime
+                from:
+                    - { table: %oro_tracking.tracking_event.class%, alias: e }
+                where:
+                    and:
+                        - e.code = :code
+                groupBy: e.name, logTime
+        columns:
+            name:
+                label: oro.tracking.trackingevent.name.label
+            visitsCount:
+                label: orocrm.campaign.trackingevent.report.visits_count.label
+                frontend_type: integer
+            logTime:
+                label: orocrm.campaign.trackingevent.report.date.label
+                frontend_type: date
+
+    campaign-tracking-detailed-report-month-grid:
+        source:
+            type: orm
+            acl_resource: orocrm_campaign_view
+            query:
+                select:
+                    - e.name
+                    - COUNT(e.id) as visitsCount
+                    - YEAR(e.loggedAt) as yearLoggedAt
+                    - MONTH(e.loggedAt) as monthLoggedAt
+                    - DATE(CONCAT(YEAR(e.loggedAt), '-', MONTH(e.loggedAt), '-01')) as logTime
+                from:
+                    - { table: %oro_tracking.tracking_event.class%, alias: e }
+                where:
+                    and:
+                        - e.code = :code
+                groupBy: e.name, yearLoggedAt, monthLoggedAt
+        columns:
+            name:
+                label: oro.tracking.trackingevent.name.label
+            visitsCount:
+                label: orocrm.campaign.trackingevent.report.visits_count.label
+                frontend_type: integer
+            logTime:
+                label: orocrm.campaign.trackingevent.report.date.label
+                frontend_type: date

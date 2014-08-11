@@ -1,0 +1,19 @@
+OroCRM\Bundle\CallBundle\Entity\Call:
+    properties:
+        subject:
+            - NotBlank: ~
+            - Length:
+                max: 255
+        callDateTime:
+            - DateTime: ~
+        callStatus:
+            - NotBlank: ~
+        direction:
+            - NotBlank: ~
+        contactPhoneNumber:
+            - Length:
+                max: 255
+
+    constraints:
+        - Callback:
+            methods: [isPhoneValid]

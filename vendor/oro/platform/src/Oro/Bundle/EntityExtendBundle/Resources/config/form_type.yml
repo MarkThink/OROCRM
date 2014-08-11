@@ -1,0 +1,86 @@
+parameters:
+    oro_entity_extend.type.entity.class:                        Oro\Bundle\EntityExtendBundle\Form\Type\EntityType
+    oro_entity_extend.type.field.class:                         Oro\Bundle\EntityExtendBundle\Form\Type\FieldType
+    oro_entity_extend.type.relation.class:                      Oro\Bundle\EntityExtendBundle\Form\Type\RelationType
+
+    oro_entity_extend.type.option_set.class:                    Oro\Bundle\EntityExtendBundle\Form\Type\OptionSetType
+    oro_entity_extend.type.option_set_collection.class:         Oro\Bundle\EntityExtendBundle\Form\Type\OptionSetCollectionType
+
+    oro_entity_extend.type.text.class:                          Oro\Bundle\EntityExtendBundle\Form\Type\TextType
+    oro_entity_extend.type.choice.class:                        Oro\Bundle\EntityExtendBundle\Form\Type\ChoiceType
+    oro_entity_extend.type.association_choice.class:            Oro\Bundle\EntityExtendBundle\Form\Type\AssociationChoiceType
+    oro_entity_extend.type.multiple_association_choice.class:   Oro\Bundle\EntityExtendBundle\Form\Type\MultipleAssociationChoiceType
+
+    oro_entity_extend.type.unique_key_collection_type.class:    Oro\Bundle\EntityExtendBundle\Form\Type\UniqueKeyCollectionType
+services:
+    oro_entity_extend.type.entity:
+        class:                                                  %oro_entity_extend.type.entity.class%
+        arguments:
+            - @oro_entity_extend.db_id_name_generator
+        tags:
+            - { name: form.type, alias: oro_entity_extend_entity_type }
+
+    oro_entity_extend.type.field:
+        class:                                                  %oro_entity_extend.type.field.class%
+        arguments:
+            - @oro_entity_config.config_manager
+            - @translator
+            - @oro_entity_extend.db_id_name_generator
+        tags:
+            - { name: form.type, alias: oro_entity_extend_field_type }
+
+    oro_entity_extend.type.relation:
+        class:                                                  %oro_entity_extend.type.relation.class%
+        arguments:
+            - @oro_entity_config.provider.extend
+        tags:
+            - { name: form.type, alias: oro_entity_relation_type }
+
+    oro_entity_extend.type.option_set:
+        class:                                                  %oro_entity_extend.type.option_set.class%
+        tags:
+            - { name: form.type, alias: oro_entity_option_set }
+
+    oro_entity_extend.type.option_set_collection:
+        class:                                                  %oro_entity_extend.type.option_set_collection.class%
+        arguments:
+            - @oro_entity_config.config_manager
+        tags:
+            - { name: form.type, alias: oro_entity_option_set_collection }
+
+    oro_entity_extend.type.text:
+        class: %oro_entity_extend.type.text.class%
+        arguments:
+            - @oro_entity_config.config_manager
+        tags:
+            - { name: form.type, alias: oro_entity_extend_text }
+
+    oro_entity_extend.type.choice:
+        class: %oro_entity_extend.type.choice.class%
+        arguments:
+            - @oro_entity_config.config_manager
+        tags:
+            - { name: form.type, alias: oro_entity_extend_choice }
+
+    oro_entity_extend.type.association_choice:
+        class: %oro_entity_extend.type.association_choice.class%
+        arguments:
+            - @oro_entity_config.config_manager
+            - @oro_entity.orm.entity_class_resolver
+        tags:
+            - { name: form.type, alias: oro_entity_extend_association_choice }
+
+    oro_entity_extend.type.multiple_association_choice:
+        class: %oro_entity_extend.type.multiple_association_choice.class%
+        arguments:
+            - @oro_entity_config.config_manager
+        tags:
+            - { name: form.type, alias: oro_entity_extend_multiple_association_choice }
+
+    oro_entity_extend.type.unique_key_collection_type:
+        class: %oro_entity_extend.type.unique_key_collection_type.class%
+        arguments:
+            - @oro_entity_config.provider.extend
+            - @oro_entity_config.provider.entity
+        tags:
+            - { name: form.type, alias: oro_entity_extend_unique_key_collection_type }

@@ -1,0 +1,26 @@
+OroCRM\Bundle\CampaignBundle\Entity\Campaign:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: code
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                max: 100
+        code:
+            - NotBlank: ~
+            - Regex:
+                pattern: "/^[a-zA-Z0-9_\-]*$/"
+                message: "This value should contains only alphabetic symbols, underscore, hyphen and numbers"
+            - Length:
+                max: 20
+        startDate:
+            - Date: ~
+        endDate:
+            - Date: ~
+        budget:
+            - Range:
+                min: 0
+        owner:
+            - NotBlank: ~
+        reportPeriod:
+            - NotBlank: ~
